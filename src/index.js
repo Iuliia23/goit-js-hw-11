@@ -66,9 +66,10 @@ async function getPosts(search) {
     if (data.length !== 0) {
       showLoadMoreBtn();
     }
-    if (response.data.totalHits <= total || response.data.totalHits === 0) {
+     if (response.data.totalHits <= total || response.data.totalHits === 0)
+      {
       Notiflix.Notify.failure(
-      "We're sorry, but you've reached the end of search results."
+        'Sorry, there are no images matching your search query. Please try again.'
       );
       // hidesLoadMoreBtn();
 
