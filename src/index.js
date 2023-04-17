@@ -66,13 +66,13 @@ async function getPosts(search) {
     if (data.length !== 0) {
       showLoadMoreBtn();
     }
-     if (response.data.totalHits <= total || response.data.totalHits === 0)
-      {
-      Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
-      refs.loadBtn.classList.add('hide');
-
+    if (response.data.totalHits <= total || response.data.totalHits === 0)
+    {
+     Notiflix.Notify.failure(
+    'Sorry, there are no images matching your search query. Please try again.'
+    );
+      // refs.loadBtn.classList.add('hide');
+      hidesLoadMoreBtn();
       console.log(response.data.totalHits);
       console.log('Кнопка має бути прихованою');
     }
@@ -123,6 +123,12 @@ async function generateMarkup(search) {
 function clearMarkup() {
   refs.gallery.innerHTML = '';
 }
+
+function hidesLoadMoreBtn() {
+  refs.loadBtn.classList.add('hide');
+  console.log('кнопку ЗАХОВАЛИ ');
+}
+hidesLoadMoreBtn();
 
 function showLoadMoreBtn() {
   refs.loadBtn.classList.remove('hide');
