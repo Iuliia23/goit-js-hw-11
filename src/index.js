@@ -35,12 +35,12 @@ async function onFormSubmit(e) {
     return;
   }
   const searchResult = await getPosts(query);
-  if (!searchResult.hits.length) {
-    Notiflix.Notify.info(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
+  // if (!searchResult.hits.length) {
+  //   Notiflix.Notify.info(
+  //     'Sorry, there are no images matching your search query. Please try again.'
+  //   );
+  //   return;
+  // }
   if (e.type === 'submit') {
     page = 1;
     clearMarkup();
@@ -55,9 +55,9 @@ async function onFormSubmit(e) {
         top: cardHeight * 2,
         behavior: 'smooth',
       });
-      refs.loadBtn.classList.remove('hide');
-      page += 1;
-      lightbox.refresh();
+      // refs.loadBtn.classList.remove('hide');
+      // page += 1;
+      // lightbox.refresh();
     } 
 
 if (page > Math.ceil(searchResult.totalHits / 40)) {
