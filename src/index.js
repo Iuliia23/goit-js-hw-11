@@ -10,6 +10,7 @@ const refs = {
 }
 
 let page = 1;
+let total = 0;
 
 refs.loadBtn.classList.add('hide');
 
