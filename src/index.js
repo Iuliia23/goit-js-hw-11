@@ -109,8 +109,9 @@ async function getPosts(query) {
           Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
         }
 
-    console.log(response.data);
-    return response.data;
+        console.log(total);
+        console.log(response.data.totalHits);
+        return data;
   } catch (error) {
     console.log(error);
   }
@@ -148,7 +149,7 @@ async function generateMarkup(query) {
   const markup = data.reduce((acc, item) => {
     return acc + createMarkup(item);
   }, '');
-  galleryEl.insertAdjacentHTML('beforeend', markup);
+  gallery.insertAdjacentHTML('beforeend', markup);
 
   lightbox.refresh();
   return data;
