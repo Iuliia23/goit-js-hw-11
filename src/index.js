@@ -19,7 +19,7 @@ refs.loadBtn.addEventListener('click', onLoadMoreClick);
 
 const lightbox = new SimpleLightbox('.gallery a', {});
 
-async function onFormSubmit(e) {
+function onFormSubmit(e) {
   e.preventDefault();
   page = 1;
   const query = refs.form.elements.searchQuery.value.trim();
@@ -34,37 +34,38 @@ async function onFormSubmit(e) {
     );
     return;
   }
-  const searchResult = await getPosts(query);
+}
+  // const searchResult = await getPosts(query);
   // if (!searchResult.hits.length) {
   //   Notiflix.Notify.info(
   //     'Sorry, there are no images matching your search query. Please try again.'
   //   );
   //   return;
   // }
-  if (e.type === 'submit') {
-    page = 1;
-    clearMarkup();
-    Notiflix.Notify.info(`Hooray! We found ${searchResult.totalHits} images.`);
-  }
-    if (e.type === 'click') {
-      const { height: cardHeight } = document
-        .querySelector('.gallery')
-        .firstElementChild.getBoundingClientRect();
+  // if (e.type === 'submit') {
+  //   page = 1;
+  //   clearMarkup();
+  //   Notiflix.Notify.info(`Hooray! We found ${searchResult.totalHits} images.`);
+  // }
+    // if (e.type === 'click') {
+    //   const { height: cardHeight } = document
+    //     .querySelector('.gallery')
+    //     .firstElementChild.getBoundingClientRect();
 
-      window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
-      });
+    //   window.scrollBy({
+    //     top: cardHeight * 2,
+    //     behavior: 'smooth',
+    //   });
       // refs.loadBtn.classList.remove('hide');
       // page += 1;
       // lightbox.refresh();
-    } 
+    // } 
 
-if (page > Math.ceil(searchResult.totalHits / 40)) {
-  refs.loadBtn.classList.add('hide');
-  Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
-}
-}
+// if (page > Math.ceil(searchResult.totalHits / 40)) {
+//   refs.loadBtn.classList.add('hide');
+//   Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+// }
+
 
 function onLoadMoreClick() {
   const query = refs.form.elements.searchQuery.value.trim();
@@ -93,12 +94,28 @@ async function getPosts(query) {
       );
       refs.loadBtn.classList.add('hide');
       }
+      if (e.type === 'click') {
+        const { height: cardHeight } = document
+          .querySelector('.gallery')
+          .firstElementChild.getBoundingClientRect();
+  
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: 'smooth',
+        });
+      }
+        if (page > Math.ceil(response.totalHits / 40)) {
+          refs.loadBtn.classList.add('hide');
+          Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+        }
+
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
   }
   } 
+
 
 function createMarkup(item) {
   return `<a href="${item.largeImageURL}" class="gallery__item"
