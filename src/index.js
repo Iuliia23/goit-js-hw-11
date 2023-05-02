@@ -94,7 +94,7 @@ async function getPosts(query) {
       );
       refs.loadBtn.classList.add('hide');
       }
-      if (e.type === 'click') {
+      if (query.type === 'click') {
         const { height: cardHeight } = document
           .querySelector('.gallery')
           .firstElementChild.getBoundingClientRect();
