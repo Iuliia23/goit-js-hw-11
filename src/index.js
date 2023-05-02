@@ -152,7 +152,7 @@ async function generateMarkup(query) {
   gallery.insertAdjacentHTML('beforeend', markup);
 
   lightbox.refresh();
-  return data;
+  return;
 }
 
 function clearMarkup() {
