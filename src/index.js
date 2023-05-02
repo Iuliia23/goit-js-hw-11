@@ -149,10 +149,10 @@ async function generateMarkup(query) {
   const markup = data.reduce((acc, item) => {
     return acc + createMarkup(item);
   }, '');
-  gallery.insertAdjacentHTML('beforeend', markup);
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 
   lightbox.refresh();
-  return;
+  return data;
 }
 
 function clearMarkup() {
